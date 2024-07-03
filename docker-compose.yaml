@@ -1,0 +1,31 @@
+version: '3.1'
+
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - mynet
+  
+  pg4admin:
+    image: dpage/pgadmin4
+    container_name: pg4admin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 123
+    ports:
+      - "5050:80"
+    networks:
+      - mynet
+  
+
+networks:
+  mynet:
+    driver: bridge
